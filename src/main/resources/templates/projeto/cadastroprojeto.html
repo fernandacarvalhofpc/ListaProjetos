@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>CCA-RJ - PROJETOS</title>
+				            
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div class="panel panel-default">
+		<div class="navbar">
+			<strong>Cadastrar Projetos</strong>
+		</div>
+			<div class="panel-body">
+			
+			<br/>
+				<div th:each = "m : ${msg}">
+					<span th:text = "${m}"> </span>
+				</div>
+			<br/>
+ 	
+			 	<form method="post" class="form-horizontal" th:object="${projeto}" th:action="@{salvarprojeto}" style="margin: 10px">
+				 	<div class="form-group">
+					 	<fieldset>
+					 	<div class="form-group row">
+							<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+								<div th:each="detailedError : ${#fields.detailedErrors()}">
+									<span th:text="${detailedError.message}"></span>
+								</div>
+							</div>
+						</div>
+						
+						 <div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('categoria')}? 'has-error'">
+									<label>Categoria do Projeto:</label>	
+									<input type="text" class="form-control input-sm" th:field="*{categoria}" autofocus="autofocus" placeholder="Informe a Categoria do Projeto" maxlength="60"/>
+								</div>
+							</div>
+						 	 <div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+									<label>Nome do Projeto:</label>
+									<input type="text" class="form-control input-sm" th:field="*{nome}" autofocus="autofocus" placeholder="Informe o Nome do Projeto" maxlength="60"/>
+								</div>
+							</div>
+						
+						 	 <div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('sigla')}? 'has-error'">
+									<label>Sigla do Projeto:</label>
+									<input type="text" class="form-control input-sm" th:field="*{sigla}" autofocus="autofocus" placeholder="Informe a Sigla do Projeto" maxlength="50"/>
+								</div>
+							</div>
+						 	 
+						  	<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('descricao')}? 'has-error'">
+									<label>Descrição do Projeto:</label>
+									<textarea class="form-control input-sm" th:field="*{descricao}" autofocus="autofocus" placeholder="Informe a Descrição do Projeto" ></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('gerente')}? 'has-error'">
+									<label>Gerente do Projeto:</label>
+									<input type="text" class="form-control input-sm" th:field="*{gerente}" autofocus="autofocus" placeholder="Informe o Gerente do Projeto" maxlength="60"/>
+								</div>
+							</div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('patrocinador')}? 'has-error'">
+									<label>Patrocinador do Projeto:</label>
+									<input type="text" class="form-control input-sm" th:field="*{patrocinador}" autofocus="autofocus" placeholder="Informe o Patrocinador do Projeto" maxlength="60"/>
+								</div>
+							</div>	
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('omsolicitante')}? 'has-error'">
+									<label>OM Solicitante do Projeto:</label>
+									<input type="text" class="form-control input-sm" th:field="*{omsolicitante}" autofocus="autofocus" placeholder="Informe a  OM Solicitante do Projeto" maxlength="60"/>
+								</div>
+							</div>				
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('omapoiadas')}? 'has-error'">
+									<label>OM Apoiadas pelo Projeto:</label>
+									<input type="text" class="form-control input-sm" th:field="*{omapoiadas}" autofocus="autofocus" placeholder="Informe as OMs Apoiadas pelo Projeto" maxlength="60"/>
+								</div>
+							</div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('solicitante')}? 'has-error'">
+								<label>Quem poderá solicitar Projeto:</label>
+									<input type="text" class="form-control input-sm" th:field="*{solicitante}" autofocus="autofocus" placeholder="Informe Quem poderá solicitar Projeto" maxlength="60"/>
+								</div>
+							</div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('requisitos')}? 'has-error'">
+								<label>Pré-Requisito:</label>
+									<textarea class="form-control input-sm" th:field="*{requisitos}" autofocus="autofocus" placeholder="Informe o Pré-Requisito"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('formasolicitacao')}? 'has-error'">
+								<label>Forma de Solicitação:</label>
+									<textarea class="form-control input-sm" th:field="*{formasolicitacao}" autofocus="autofocus" placeholder="Informe a Forma de Solicitação" ></textarea>
+								</div>
+							</div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('omresponsavel')}? 'has-error'">
+								<label>OM Responsável pela Execução do Projeto:</label>
+									<input type="text" class="form-control input-sm" th:field="*{omresponsavel}" autofocus="autofocus" placeholder="Informe a OM Responsável pela Execução do Projeto" maxlength="50"/>
+								</div>
+							</div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('sla')}? 'has-error'">
+								<label>SLA (disponibilidade do projeto e período de suporte):</label>
+									<textarea class="form-control input-sm" th:field="*{sla}" autofocus="autofocus" placeholder="Informe o SLA" ></textarea>
+								</div>
+							</div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('criticidade')}? 'has-error'">
+								<label>Criticidade:</label>
+									<input type="text" class="form-control input-sm" th:field="*{criticidade}" autofocus="autofocus" placeholder="Informe a Criticidade" maxlength="50"/>
+								</div>
+							</div>
+							<div class="form-group row">                                                          
+								<div class="col-md-4" th:classappend="${#fields.hasErrors('prazoexecucao')}? 'has-error'">
+								<label>Prazo Estimado para Execução:</label>
+									<textarea class="form-control input-sm" th:field="*{prazoexecucao}" autofocus="autofocus" placeholder="Informe o Prazo Estimado para Execução"></textarea>
+								</div>
+							</div>
+						 </fieldset>
+						 	
+						 	 
+						 	 <div>
+								<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+								<a th:href="@{/}" class="btn btn-sm btn-secondary">Cancelar</a>
+							</div>
+				 	</div> 
+				 	
+			 	</form>
+			 	
+			</div>
+	</div>
+ 	
+ 	
+ 	
+ 	
+ <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>

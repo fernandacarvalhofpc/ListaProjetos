@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>CCA-RJ - PROJETOS</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading"><img class="img" src="/Sabre_alado.png"/></div>
+ 
+       <div class="list-group list-group-flush">
+       	<a href="/cadastroprojeto" class="list-group-item list-group-item-action bg-light">Cadastrar Projeto</a>
+        
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+       
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="mt-4">Projetos</h1>
+        
+        <br/>
+        
+        <div class="form-group">
+        	<div class="form-group row">
+        		<div class="col-md-4">
+			        <form action='listarprojeto' method='post'>
+			        	<input name="nomepesquisa" class="form-control input-sm" autofocus="autofocus" placeholder="Informe nome para pesquisa" maxlength="50"/>
+			        	<br/>
+			        	<input type="submit" class="btn btn-sm btn-primary" value="buscar"/>
+			        </form>
+			     </div>
+			</div>
+		</div>   
+        
+       <div class="panel-body">
+			<div class="table-responsive">
+				<table class="table table-sm table-striped table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Categoria</th>
+							<th>Sigla</th>
+							<th>Descrição do Projeto</th>
+							<th>Gerente</th>
+							<th>Patrocinador</th>
+							<th>OM Solicitante</th>
+							<th>OM Apoiadas</th>
+						
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="projeto : ${projeto}">
+							<td th:text="${projeto.categoria}"></td>
+							<td th:text="${projeto.nome}"></td>
+							<td th:text="${projeto.sigla}"></td>
+							<td th:text="${projeto.descricao}"></td>
+							<td th:text="${projeto.gerente}"></td>
+							<td th:text="${projeto.patrocinador}"></td>
+							<td th:text="${projeto.omsolicitante}"></td>
+							<td th:text="${projeto.omapoiadas}"></td>
+	
+							<td>
+							<div class="btn-group pull-right">
+							   		<a class="btn btn-sm btn-primary" th:href="@{/alteraprojeto/{codigo}(codigo=${projeto.codigo})}" >Editar</a>
+							   		<a class="delete btn btn-sm btn-danger" th:href="@{/deletaprojeto/{codigo}(codigo=${projeto.codigo})}">Excluir</a>
+							</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- <div class="panel-footer">
+			<a class="btn btn-sm btn-success" th:href="@{/cadastroprojeto}" >Adicionar Projeto</a>
+		</div> -->
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
